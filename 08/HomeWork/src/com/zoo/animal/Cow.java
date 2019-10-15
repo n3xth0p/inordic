@@ -2,8 +2,8 @@ package com.zoo.animal;
 
 public class Cow extends Animal {
 
-	public Cow(String sex, int age, int weight, String name) {
-		super(sex, age, weight, name);
+	public Cow(int age, int weight, String name) {
+		super(age, weight, name);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -12,11 +12,11 @@ public class Cow extends Animal {
 	}
 
 	public void eat() {
-		System.out.println("Корова " + this.name + " ест чавк чавк чавк");
+		System.out.println("Корова " + this.name + " ест травку муравку");
 	}
 
 	public int countFood() {
-		int foodVolume = this.weight / 5;
+		int foodVolume = this.weight / 8;
 		return foodVolume;
 	}
 

@@ -3,12 +3,10 @@ package com.zoo.animal;
 public abstract class Animal {
 
 	protected String name;
-	protected String sex;
 	protected int age;
 	protected int weight;
 
-	public Animal(String sex, int age, int weight, String name) {
-		this.sex = sex;
+	public Animal(int age, int weight, String name) {
 		this.age = age;
 		this.weight = weight;
 		this.name = name;

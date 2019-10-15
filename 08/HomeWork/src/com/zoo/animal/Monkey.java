@@ -2,17 +2,17 @@ package com.zoo.animal;
 
 public class Monkey extends Animal {
 
-	public Monkey(String sex, int age, int weight, String name) {
-		super(sex, age, weight, name);
+	public Monkey(int age, int weight, String name) {
+		super(age, weight, name);
 		// TODO Auto-generated constructor stub
 	}
 
 	public void say() {
-		System.out.println("Обезьяна говорит У-у-у-у-уууууу");
+		System.out.println("Обезьяна " + this.name + " говорит У-у-у-у-уууууу");
 	}
 
 	public void eat() {
-		System.out.println("Обезьяна есть уууууу хрум хрум");
+		System.out.println("Обезьяна " + this.name +  " есть бабаны");
 	}
 
 	public int countFood() {
