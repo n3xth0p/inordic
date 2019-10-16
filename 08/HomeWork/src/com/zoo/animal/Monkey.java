@@ -1,6 +1,9 @@
 package com.zoo.animal;
 
 public class Monkey extends Animal {
+	private String name;
+	private int age;
+	private int weight;
 
 	public Monkey(int age, int weight, String name) {
 		super(age, weight, name);
@@ -12,7 +15,7 @@ public class Monkey extends Animal {
 	}
 
 	public void eat() {
-		System.out.println("Обезьяна " + this.name +  " есть бабаны");
+		System.out.println("Обезьяна " + this.name + " есть бабаны");
 	}
 
 	public int countFood() {

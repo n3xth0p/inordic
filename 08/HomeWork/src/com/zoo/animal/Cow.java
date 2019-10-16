@@ -1,6 +1,9 @@
 package com.zoo.animal;
 
 public class Cow extends Animal {
+	private String name;
+	private int age;
+	private int weight;
 
 	public Cow(int age, int weight, String name) {
 		super(age, weight, name);

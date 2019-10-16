@@ -2,9 +2,9 @@ package com.zoo.animal;
 
 public abstract class Animal {
 
-	protected String name;
-	protected int age;
-	protected int weight;
+	private String name;
+	private int age;
+	private int weight;
 
 	public Animal(int age, int weight, String name) {
 		this.age = age;
