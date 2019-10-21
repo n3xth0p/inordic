@@ -91,7 +91,7 @@ public class Calculator {
 				scanner.next();
 			}
 			longB = scanner.nextLong();
-			if (longB == 0 && "/".equals(operation)) {
+			if (longB == 0 && ("/".equals(operation)||"mod".equals(operation) )) {
 				System.out.println("На ноль делить нельзя! Введите другое число:");
 			}
 
