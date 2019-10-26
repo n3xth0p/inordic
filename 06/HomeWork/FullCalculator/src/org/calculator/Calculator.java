@@ -91,7 +91,7 @@ public class Calculator {
 				scanner.next();
 			}
 			longB = scanner.nextLong();
-			if (longB == 0 && ("/".equals(operation)||"mod".equals(operation) )) {
+			if (longB == 0 && ("/".equals(operation) || "mod".equals(operation) || "div".equals(operation))) {
 				System.out.println("На ноль делить нельзя! Введите другое число:");
 			}
 
@@ -102,9 +102,8 @@ public class Calculator {
 
 	private static String inputOperation(Scanner scanner) {
 		System.out.println("Пожалуйста, введите операцию:");
-		while (!(scanner.hasNext("\\+") || scanner.hasNext("-") || scanner.hasNext("\\*") || scanner.hasNext("/")
-				|| scanner.hasNext("div") || scanner.hasNext("mod") || scanner.hasNext("\\^")
-				|| scanner.hasNext("exit"))) {
+		while (!(scanner.hasNext("[+-/*^]{1}") || scanner.hasNext("div")
+				|| scanner.hasNext("mod") || scanner.hasNext("exit"))) {
 			System.out.println("Неверный выбор операции. Повторите:");
 			scanner.next();
 		}
