@@ -75,7 +75,7 @@ public class Calculator {
 				}
 				degreeDoubleA = (double) (1 / (double) degreeLongA);
 				String formatDegreeDoubleA = new DecimalFormat(FORMAT).format(degreeDoubleA);
-				System.out.println("степень - " + longA + " ^ " + longB + " = " + formatdegreeDoubleA);
+				System.out.println("степень - " + longA + " ^ " + longB + " = " + formatDegreeDoubleA);
 
 			} else {
 				System.out.println("степень - " + longA + " ^ " + longB + " = " + degreeLongA);
