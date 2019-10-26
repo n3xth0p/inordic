@@ -1,5 +1,6 @@
 package org.calculator;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Calculator {
@@ -29,6 +30,8 @@ public class Calculator {
 
 	private static void calculateOperation(Long longA, Long longB, String operation) {
 		// TODO Auto-generated method stub
+		String FORMAT = "#0.0000000000";
+
 		switch (operation) {
 		case "+":
 			System.out.println("сумма: " + longA + " + " + longB + " = " + (longA + longB));
@@ -57,12 +60,27 @@ public class Calculator {
 		case "^":
 			// возведение в степень
 			Long degreeLongA = 1L;
-			if (longB != 0) {
+			Double degreeDoubleA = null;
+
+			if (longB > 0) {
 				for (int i = 0; i < longB; i++) {
 					degreeLongA *= longA;
 				}
+				System.out.println("степень - " + longA + " ^ " + longB + " = " + degreeLongA);
 			}
-			System.out.println("степень - " + longA + " ^ " + longB + " = " + degreeLongA);
+
+			else if (longB < 0) {
+				for (int i = 0; i < Math.abs(longB); i++) {
+					degreeLongA *= longA;
+				}
+				degreeDoubleA = (double) (1 / (double) degreeLongA);
+				String formatdegreeDoubleA = new DecimalFormat(FORMAT).format(degreeDoubleA);
+				System.out.println("отр степень - " + longA + " ^ " + longB + " = " + formatdegreeDoubleA);
+
+			} else {
+				System.out.println("0 степень - " + longA + " ^ " + longB + " = " + degreeLongA);
+			}
+
 			break;
 
 		default:
@@ -93,6 +111,8 @@ public class Calculator {
 			longB = scanner.nextLong();
 			if (longB == 0 && ("/".equals(operation) || "mod".equals(operation) || "div".equals(operation))) {
 				System.out.println("На ноль делить нельзя! Введите другое число:");
+			} else if (longB == 0 && "^".equals(operation)) {
+				break;
 			}
 
 		} while (longB == 0);
@@ -102,8 +122,8 @@ public class Calculator {
 
 	private static String inputOperation(Scanner scanner) {
 		System.out.println("Пожалуйста, введите операцию:");
-		while (!(scanner.hasNext("[+-/*^]{1}") || scanner.hasNext("div")
-				|| scanner.hasNext("mod") || scanner.hasNext("exit"))) {
+		while (!(scanner.hasNext("[+-/*^]{1}") || scanner.hasNext("div") || scanner.hasNext("mod")
+				|| scanner.hasNext("exit"))) {
 			System.out.println("Неверный выбор операции. Повторите:");
 			scanner.next();
 		}
