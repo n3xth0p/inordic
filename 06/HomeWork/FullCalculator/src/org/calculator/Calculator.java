@@ -34,27 +34,27 @@ public class Calculator {
 
 		switch (operation) {
 		case "+":
-			System.out.println("сумма: " + longA + " + " + longB + " = " + (longA + longB));
+			System.out.println("сумма: " + longA + " + " + longB + " = " + operationAdd(longA, longB));
 			break;
 
 		case "-":
-			System.out.println("разность: " + longA + " - " + longB + " = " + (longA - longB));
+			System.out.println("разность: " + longA + " - " + longB + " = " + operationMinus(longA, longB));
 			break;
 
 		case "*":
-			System.out.println("умножение: " + longA + " * " + longB + " = " + (longA * longB));
+			System.out.println("умножение: " + longA + " * " + longB + " = " + operationMultiply(longA, longB));
 			break;
 
 		case "/":
-			System.out.println("деление: " + longA + " / " + longB + " = " + ((double) longA / longB));
+			System.out.println("деление: " + longA + " / " + longB + " = " + operationDivideDouble(longA, longB));
 			break;
 
 		case "div":
-			System.out.println("целочисленное деление: " + longA + " div " + longB + " = " + (longA / longB));
+			System.out.println("целочисленное деление: " + longA + " div " + longB + " = " + operationDivideLong(longA, longB));
 			break;
 
 		case "mod":
-			System.out.println("деление по модулю: " + longA + " mod " + longB + " = " + (longA % longB));
+			System.out.println("деление по модулю: " + longA + " mod " + longB + " = " + operationMod(longA, longB));
 			break;
 
 		case "^":
@@ -88,6 +88,30 @@ public class Calculator {
 			break;
 		}
 
+	}
+
+	private static double operationDivideDouble(Long longA, Long longB) {
+		return (double) longA / longB;
+	}
+
+	private static long operationMultiply(Long longA, Long longB) {
+		return longA * longB;
+	}
+
+	private static long operationMinus(Long longA, Long longB) {
+		return longA - longB;
+	}
+
+	private static long operationAdd(Long longA, Long longB) {
+		return longA + longB;
+	}
+
+	private static long operationDivideLong(Long longA, Long longB) {
+		return longA / longB;
+	}
+
+	private static long operationMod(Long longA, Long longB) {
+		return longA % longB;
 	}
 
 	private static Long inputFirstNumber(Scanner scanner) {
