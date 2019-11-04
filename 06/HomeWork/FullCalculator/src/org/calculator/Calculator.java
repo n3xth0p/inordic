@@ -146,8 +146,7 @@ public class Calculator {
 
 	private static String inputOperation(Scanner scanner) {
 		System.out.println("Пожалуйста, введите операцию:");
-		while (!(scanner.hasNext("[+-/*^]{1}") || scanner.hasNext("div") || scanner.hasNext("mod")
-				|| scanner.hasNext("exit"))) {
+		while (!(scanner.hasNext("[+-/*^]{1}|div|mod|exit"))) {
 			System.out.println("Неверный выбор операции. Повторите:");
 			scanner.next();
 		}
@@ -158,7 +157,7 @@ public class Calculator {
 
 	private static void textBanner() {
 		System.out.println("Калькулятор нескольких операций для двух чисел.");
-		System.out.println("Для расчета введите операцию: +   -    *   ^  /    div   mod");
+		System.out.println("Для расчета введите операцию: + - / * ^ div mod");
 		System.out.println("Для выхода введите: exit");
 	}
 }
