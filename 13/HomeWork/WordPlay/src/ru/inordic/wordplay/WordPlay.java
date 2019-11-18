@@ -38,8 +38,9 @@ public class WordPlay {
 			System.out.println("Игрок 1 выиграл");
 		} else if (historyPlayer1.size() == historyPlayer2.size())
 			System.out.println("Ничья");
-		else
+		else {
 			System.out.println("Игрок 2 выиграл");
+		}
 	}
 
 	public static void nextPlayer() {
