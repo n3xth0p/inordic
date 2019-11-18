@@ -1,132 +1,99 @@
 package ru.inordic.wordplay;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import ru.inordic.wordplay.exceptions.*;
 
 public class WordPlay {
+	static int currentPlayer = 1;
 
-	static int input_turn = 1;
-	static String turn = "first";
-
-	public static String getTurn() {
-		return WordPlay.turn;
-	}
-
-	public static void setTurn(String turn) {
-		WordPlay.turn = turn;
-	}
-
-	public static void checkContains(String text, String gametext) throws InconsistInputExceptions {
+	public static void checkContains(String text, String gameWord) throws InvalidInputException {
 		for (int i = 0; i < text.length(); i++) {
-			int c = text.charAt(i);
-			int index = gametext.indexOf(c);
+
+			var symbol = text.charAt(i);
+			var index = gameWord.indexOf(symbol);
 
 			if (index < 0) {
-				throw new InconsistInputExceptions();
+				throw new InvalidInputException();
 			}
 		}
 	}
 
-	public static int arrayLength(ArrayList<String> arr) {
-		int index = 0;
-		for (String str : arr) {
-			for (char c : str.toCharArray()) {
-				index++;
-			}
-		}
-		return index;
-	}
-
-	public static void checkHistory(ArrayList<String> historyp1, ArrayList<String> historyp2, String text)
-			throws ContainExceptions {
-		if (historyp1.contains(text) || historyp2.contains(text)) {
-			throw new ContainExceptions();
-		}
-		if ("first".equals(getTurn())) {
-			historyp1.add(text);
-		} else
-			historyp2.add(text);
-	}
-
-	public static void checkWinner(ArrayList<String> historyp1, ArrayList<String> historyp2) {
-		int p1 = 0;
-		int p2 = 0;
-
-		for (String str : historyp1) {
-			for (char c : str.toCharArray()) {
-				p1++;
-			}
+	public static void checkHistory(ArrayList<String> historyPlayer1, ArrayList<String> historyPlayer2, String text)
+			throws SameWordException {
+		if (historyPlayer1.contains(text) || historyPlayer2.contains(text)) {
+			throw new SameWordException();
 		}
 
-		for (String str : historyp2) {
-			for (char c : str.toCharArray()) {
-				p2++;
-			}
-		}
-//TODO не учтены все сценарии
-		
-		int numberOfWords = historyp1.size() > historyp2.size() ? 1 : 0;
-		int numberOfSymbols = p1 > p2 ? 1 : 0;
-		int score = numberOfWords + numberOfSymbols;
-
-		if (score >= 2)
-			System.out.println("Player 1 win!");
-		else if (historyp1.size() == historyp2.size() && p1 == p2)
-			System.out.println("Tie!");
-		else
-			System.out.println("Player 2 win!");
-	}
-
-	public static void changeTurn() {
-		if ((input_turn % 2) != 0) {
-			System.out.println("Player 1 turn: ");
-			setTurn("first");
+		if (currentPlayer % 2 == 1) {
+			historyPlayer1.add(text);
 		} else {
-			System.out.println("Player 2 turn: ");
-			setTurn("second");
+			historyPlayer2.add(text);
+		}
+	}
+
+	public static void checkWinner(ArrayList<String> historyPlayer1, ArrayList<String> historyPlayer2) {
+		if (historyPlayer1.size() > historyPlayer2.size()) {
+			System.out.println("Игрок 1 выиграл");
+		} else if (historyPlayer1.size() == historyPlayer2.size())
+			System.out.println("Ничья");
+		else
+			System.out.println("Игрок 2 выиграл");
+	}
+
+	public static void nextPlayer() {
+		if ((currentPlayer % 2) == 1) {
+			System.out.println("Игрок 1 ходит: ");
+		} else {
+			System.out.println("Игрок 2 ходит: ");
 		}
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter the gameword");
-		String gametext = scanner.nextLine();
-		System.out.println("Player 1 turn: ");
-		String text = scanner.nextLine();
+		ArrayList<String> historyPlayer1 = new ArrayList<String>();
+		ArrayList<String> historyPlayer2 = new ArrayList<String>();
 
-		ArrayList<String> historyp1 = new ArrayList<String>();
-		ArrayList<String> historyp2 = new ArrayList<String>();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Введите игровое слово:");
+
+		String gameWord = scanner.nextLine().toLowerCase();
+
+		System.out.println("Ход Игрока 1: ");
+		String text = scanner.nextLine();
 
 		while (!"".equals(text)) {
 			try {
-				checkContains(text, gametext);
-				// game
+				checkContains(text, gameWord);
+
 				try {
-					checkHistory(historyp1, historyp2, text);
-				} catch (ContainExceptions e) {
-					System.out.println("You enter same word again!");
-					input_turn--;
+					checkHistory(historyPlayer1, historyPlayer2, text);
+				} catch (SameWordException e) {
+					System.out.println("You enter same word again! 123");
+					// оставляем того же игрока
+					currentPlayer = (currentPlayer - 1) % 2;
 				}
-			} catch (InconsistInputExceptions e) {
+
+			} catch (InvalidInputException e) {
 				System.out.println("Inconsist input!");
-				input_turn--;
+				// оставляем того же игрока
+				currentPlayer = (currentPlayer - 1) % 2;
 			}
+			// переходим на второго игрока
+			currentPlayer = (currentPlayer + 1) % 2;
 
-			input_turn++;
-
-			changeTurn();
+			nextPlayer();
 			text = scanner.nextLine();
+
 		}
 
-		System.out.println("Player 1 words: " + historyp1 + ", count words: " + historyp1.size() + ", length total: "
-				+ arrayLength(historyp1));
-		System.out.println("Player 2 words: " + historyp2 + ", count words: " + historyp2.size() + ", length total: "
-				+ arrayLength(historyp2));
+		System.out.println("Слова, Игрок 1: " + historyPlayer1 + ", всего слов: " + historyPlayer1.size());
+		System.out.println("Слова, Игрок 2: " + historyPlayer2 + ", всего слов: " + historyPlayer2.size());
 
-		checkWinner(historyp1, historyp2);
+		checkWinner(historyPlayer1, historyPlayer2);
 
 	}
+
 }
