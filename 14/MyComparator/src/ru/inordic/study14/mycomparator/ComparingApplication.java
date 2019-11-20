@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import ru.inordic.study14.mycomparator.*;
 
-public class Comparing {
+public class ComparingApplication {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -25,7 +25,7 @@ public class Comparing {
 		System.out.print("Перед сортировкой - ");
 		System.out.println(numbers);
 		
-		numbers.sort(new MyComparator());
+		numbers.sort(new DigitValueComparator());
 		
 		System.out.print("После сортировки - ");
 		System.out.println(numbers);
