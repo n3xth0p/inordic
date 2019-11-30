@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProductionStage implements Runnable {
 	
-	AtomicInteger stageNum = new AtomicInteger();
+	private static AtomicInteger stageNum = new AtomicInteger();
 
 	public ProductionStage(AtomicInteger stageNum) {
 		super();
