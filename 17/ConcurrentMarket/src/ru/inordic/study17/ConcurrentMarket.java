@@ -43,6 +43,8 @@ public class ConcurrentMarket {
       });
     }
 
+    executorService.shutdown();
+
     System.out.println(result);
     System.out.println("size - " + result.size());
 
