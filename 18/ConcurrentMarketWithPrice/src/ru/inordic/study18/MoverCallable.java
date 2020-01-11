@@ -3,7 +3,7 @@ package ru.inordic.study18;
 import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingDeque;
 
-public class MoverCallable implements Callable<Integer> {
+public class MoverCallable implements Callable<int[]> {
 
   private LinkedBlockingDeque<Integer> queue = new LinkedBlockingDeque<Integer>();
   private LinkedBlockingDeque<Integer> vector = new LinkedBlockingDeque<Integer>();
@@ -15,20 +15,30 @@ public class MoverCallable implements Callable<Integer> {
   }
 
   @Override
-  public Integer call() throws Exception {
+  public int[] call() throws Exception {
 
-    var resultPrice = 0;
+    int result[] = new int[2];
+
+    var resultMoney = 0;
+    var countClients = 0;
+
     var currentClient = queue.poll();
 
     while (currentClient != null) {
+
       var currentPrice = vector.poll();
-      resultPrice += currentPrice;
+      resultMoney += currentPrice;
+      countClients++;
+
       currentClient = queue.poll();
     }
 
     System.out.println("Hello thread!");
 
-    return resultPrice;
+    result[0] = resultMoney;
+    result[1] = countClients;
+
+    return result;
   }
 }
 

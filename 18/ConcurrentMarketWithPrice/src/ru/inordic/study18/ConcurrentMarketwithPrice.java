@@ -15,16 +15,17 @@ public class ConcurrentMarketwithPrice {
 
     for (int i = 1; i <= 2000; i++) {
       queue.put(i);
+
       var randomNumber = r.ints(1, 1, 100).findFirst().getAsInt();
       vector.put(randomNumber);
     }
-
 
 
     System.out.println("queue - " + queue);
     System.out.println("queue size - " + queue.size());
     System.out.println("vector - " + vector);
     System.out.println("vector size - " + vector.size());
+
 
     var executorService = Executors.newFixedThreadPool(4);
 
@@ -43,17 +44,17 @@ public class ConcurrentMarketwithPrice {
 
 
     var count1 = counter1.get();
-    System.out.println("Касса 1 - " + count1);
+    System.out.println("Касса 1 - " + count1[0] + " рублей, клиентов обслужено - " + count1[1]);
 
 
     var count2 = counter2.get();
-    System.out.println("Касса 2 - " + count2);
+    System.out.println("Касса 2 - " + count2[0] + " рублей, клиентов обслужено - " + count2[1]);
 
     var count3 = counter3.get();
-    System.out.println("Касса 3 - " + count3);
+    System.out.println("Касса 3 - " + count3[0] + " рублей, клиентов обслужено - " + count3[1]);
 
     var count4 = counter4.get();
-    System.out.println("Касса 4 - " + count4);
+    System.out.println("Касса 4 - " + count4[0] + " рублей, клиентов обслужено - " + count4[1]);
   }
 
 }
