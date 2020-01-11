@@ -33,7 +33,7 @@ public class MoverCallable implements Callable<int[]> {
       currentClient = queue.poll();
     }
 
-    System.out.println("Hello thread!");
+    System.out.println("Hello, it is a thread!");
 
     result[0] = resultMoney;
     result[1] = countClients;

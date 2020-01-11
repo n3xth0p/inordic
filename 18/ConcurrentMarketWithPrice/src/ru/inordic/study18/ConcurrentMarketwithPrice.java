@@ -20,10 +20,8 @@ public class ConcurrentMarketwithPrice {
       vector.put(randomNumber);
     }
 
-
-    System.out.println("queue - " + queue);
+    System.out.println("=== INIT ====");
     System.out.println("queue size - " + queue.size());
-    System.out.println("vector - " + vector);
     System.out.println("vector size - " + vector.size());
 
 
@@ -36,12 +34,9 @@ public class ConcurrentMarketwithPrice {
 
     executorService.shutdown();
 
-    System.out.println("----------------");
-    System.out.println("queue - " + queue);
+    System.out.println("=== RESULT ===");
     System.out.println("queue size - " + queue.size());
-    System.out.println("vector - " + vector);
     System.out.println("vector size - " + vector.size());
-
 
     var count1 = counter1.get();
     System.out.println("Касса 1 - " + count1[0] + " рублей, клиентов обслужено - " + count1[1]);
