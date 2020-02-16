@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Список файлов</title>
+</head>
+
+<body>
+
+<table>
+<!--  <span style="color:red" th:text="${mystr}"></span> -->
+  <tr th:each="file : ${files}">
+  		<td th:text="${file}" />
+  </tr>
+ </table>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+logging.level:
+  com.cloud.study.nordic.controller: debug
+
+uploaded.files.path: C:\temp\cloud
